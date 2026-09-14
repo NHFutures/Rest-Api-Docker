@@ -1,0 +1,62 @@
+# NH선물 REST API 설정 파일 (템플릿)
+# 환경변수가 설정되어 있으면 환경변수가 우선 적용됩니다.
+# Docker 실행 시 APP_KEY, APP_SECRET 환경변수를 사용합니다.
+
+# 환경 선택: demo (모의투자), real (실투자)
+environment: demo
+
+# 기본 URL 설정
+urls:
+  demo: https://apidemo.futures.co.kr
+  real: https://api.futures.co.kr
+
+# 계좌 설정
+accounts:
+  domestic:
+    # 국내선물 모의투자 APP KEY
+    appkey: "YOUR_DOMESTIC_APPKEY"
+    # 국내선물 모의투자 APP SECRET
+    appsecret: "YOUR_DOMESTIC_APPSECRET"
+    # 국내선물 계좌번호 (하이픈 포함 14자리)
+    account_no: "000000-00-0000"
+    # 국내선물 계좌번호 앞 8자리 (하이픈 포함)
+    cano: "000000-00"
+    # 국내선물 계좌 상품코드 (일반적으로 "0001")
+    acnt_prdt_cd: "0001"
+  overseas:
+    # 해외선물 모의투자 APP KEY
+    appkey: "YOUR_OVERSEAS_APPKEY"
+    # 해외선물 모의투자 APP SECRET
+    appsecret: "YOUR_OVERSEAS_APPSECRET"
+    # 해외선물 계좌번호 (하이픈 포함 14자리)
+    account_no: "000000-00-0000"
+    # 해외선물 계좌번호 앞 8자리 (하이픈 포함)
+    cano: "000000-00"
+    # 해외선물 계좌 상품코드 (일반적으로 "0001")
+    acnt_prdt_cd: "0001"
+
+# 기본 종목 코드
+symbols:
+  # 국내선물 기본 종목 코드
+  domestic: "YOUR_DOMESTIC_SYMBOL"
+  # 해외선물 기본 종목 코드
+  overseas: "YOUR_OVERSEAS_SYMBOL"
+
+# HTTP 요청 간격 (초) - RateLimit 방지 (API 호출 제한 방지를 위한 대기 시간)
+request_interval: 1.0
+
+# 로그 설정
+logging:
+  # 로그 레벨 (DEBUG, INFO, WARNING, ERROR, CRITICAL)
+  level: DEBUG
+  # 로그 파일 경로
+  file: logs/api_runner.log
+  # 로그 출력 형식
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+
+# SSL 설정
+# truststore 패키지를 사용하여 OS 트러스트 스토어(Windows 인증서 저장소)를 활용합니다.
+# 폐쇄망 환경에서 내부 CA 인증서가 OS에 설치되어 있으면 자동으로 신뢰합니다.
+# use_truststore: true  -> truststore 패키지 사용 (권장, 폐쇄망 대응)
+# use_truststore: false -> 기본 certifi 번들 사용
+use_truststore: true

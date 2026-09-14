@@ -1,0 +1,20 @@
+# NH선물 REST API Docker Compose 설정
+# 사용법: docker-compose up
+# 환경변수는 .env 파일 또는 docker-compose.yml에서 직접 설정
+
+version: '3.8'
+
+services:
+  nh-open-api:
+    build: .
+    container_name: nh-open-api
+    stdin_open: true      # 터미널 인터랙티브 입력 허용 (-i)
+    tty: true             # TTY 할당 (-t)
+    environment:
+      - APP_KEY=${APP_KEY:-}               # APPKEY (환경변수 또는 .env 파일)
+      - APP_SECRET=${APP_SECRET:-}         # APPSECRET (환경변수 또는 .env 파일)
+      - ENVIRONMENT=${ENVIRONMENT:-}   # demo: 모의투자, real: 실투자
+      - ACCOUNT_TYPE=${ACCOUNT_TYPE:-}  # domestic: 국내, overseas: 해외
+    volumes:
+      - ./logs:/app/logs   # 로그 파일 호스트와 공유
+    restart: "no"

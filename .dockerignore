@@ -1,0 +1,15 @@
+__pycache__
+*.pyc
+*.pyo
+.git
+.gitignore
+*.md
+logs/*.log
+.idea
+.vscode
+venv
+env
+nh-docker-env
+.venv
+.token
+prompt.md
